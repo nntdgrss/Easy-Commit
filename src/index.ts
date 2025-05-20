@@ -11,7 +11,11 @@ async function main() {
   await $`git commit -m "${message}"`;
   await $`git push`;
 
-  console.log(`💡 Создали коммит с сообщением: ${message}`);
+  console.log(`
+ 
+💡 Создали коммит с сообщением: ${message}
+
+`);
 }
 
 main();
