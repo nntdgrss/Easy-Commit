@@ -1,5 +1,10 @@
 import { commitMessages } from "./lib/commits";
 import { Commands } from "./utils/commands";
+import { program } from "commander";
+
+program.option("-p, --push", "Отправляет коммит на сервер").parse(process.argv);
+
+const options = program.opts();
 
 async function main() {
   console.log("✨ Easy commit. Генерируем сообщение для коммита...");
@@ -20,7 +25,10 @@ async function main() {
   // 3. Добавляем все изменения в индекс
   await Commands.add();
   await Commands.commit(message);
-  await Commands.push();
+
+  if (options.push) {
+    await Commands.push();
+  }
 
   // 4. Выводим сообщение о том, что коммит создан
   console.log(`
