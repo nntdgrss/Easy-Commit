@@ -1,15 +1,35 @@
 {
-  "name": "easycommit",
-  "module": "index.ts",
-  "devDependencies": {
-    "@types/bun": "latest"
+  "name": "@nntdgrss/easycommit",
+  "version": "1.0.0",
+  "description": "Утилита для быстрого создания осмысленных коммитов с минимальными усилиями",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "easycommit": "dist/index.js"
   },
-  "peerDependencies": {
-    "typescript": "^5"
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "bun build ./src/index.ts --outdir ./dist --target bun",
+    "prepublishOnly": "bun run build",
+    "start": "bun run ./src/index.ts"
   },
-  "private": true,
-  "type": "module",
+  "keywords": [
+    "git",
+    "commit",
+    "cli",
+    "automation",
+    "productivity"
+  ],
+  "author": "Nntdgrss",
+  "license": "MIT",
   "dependencies": {
-    "commander": "^14.0.0"
+    "commander": "^11.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0",
+    "bun-types": "latest"
   }
 }

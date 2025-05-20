@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import { commitMessages } from "./lib/commits";
 import { Commands } from "./utils/commands";
 import { program } from "commander";
@@ -28,6 +30,7 @@ const colorize = {
 
 // Настройка CLI параметров
 program
+  .version(process.env.npm_package_version || "1.0.0")
   .option("-p, --push", "Отправляет коммит на сервер")
   .option("-m, --message <message>", "Задать собственное сообщение для коммита")
   .option("-v, --verbose", "Показывать подробную информацию")
@@ -39,18 +42,11 @@ const options = program.opts();
  * Генерирует случайное сообщение для коммита из массива шаблонов
  */
 function generateCommitMessage(): string {
-  if (!commitMessages?.length) {
+  if (!commitMessages.length) {
     return "feat: добавлен новый функционал";
   }
 
-  const randomIndex = Math.floor(Math.random() * commitMessages.length);
-  const message = commitMessages[randomIndex];
-
-  if (!message) {
-    return "feat: добавлен новый функционал";
-  }
-
-  return message;
+  return commitMessages[Math.floor(Math.random() * commitMessages.length)];
 }
 
 /**
@@ -67,7 +63,7 @@ function logVerbose(message: string): void {
  */
 async function main() {
   try {
-    console.log(colorize.bold("✨ Easy commit. Работаем с Git..."));
+    console.log(colorize.bold("✨ EASYCOMMIT. Работаем с Git..."));
 
     // 1. Проверяем наличие изменений в репозитории
     logVerbose("Проверяем статус репозитория...");
