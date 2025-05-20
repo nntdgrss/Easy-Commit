@@ -1,6 +1,6 @@
 {
   "name": "@nntdgrss/easycommit",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Утилита для быстрого создания осмысленных коммитов с минимальными усилиями",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
