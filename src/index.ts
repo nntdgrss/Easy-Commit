@@ -53,7 +53,7 @@ program
 const options = program.opts();
 
 /**
- * Генерирует случайное сообщение для коммита из массива шаблонов
+ * Генерирует случайное сообщение для коммита из массива шаблонов.
  */
 function generateCommitMessage(type: string): string {
   if (type === "random") {
