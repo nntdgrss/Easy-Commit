@@ -1,12 +1,11 @@
-import { $ } from "bun";
 import { commitMessages } from "./lib/commits";
+import { Commands } from "./utils/commands";
 
 async function main() {
   console.log("✨ Easy commit. Генерируем сообщение для коммита...");
 
   // 1. Смотрим, есть ли изменения в репозитории перед коммитом
-
-  const status = await $`git status --porcelain`.text();
+  const status: string = await Commands.status();
 
   if (status.trim() === "") {
     console.log("🚫 Нет изменений в репозитории. Ничего не коммитим.");
@@ -14,14 +13,16 @@ async function main() {
   }
 
   // 2. Генерируем сообщение для коммита
-  const message =
-    commitMessages[Math.floor(Math.random() * commitMessages.length)];
+  const message: string =
+    commitMessages[Math.floor(Math.random() * commitMessages.length)] ||
+    "feat: добавлен новый функционал";
 
   // 3. Добавляем все изменения в индекс
-  await $`git add .`;
-  await $`git commit -m "${message}"`;
-  await $`git push`;
+  await Commands.add();
+  await Commands.commit(message);
+  await Commands.push();
 
+  // 4. Выводим сообщение о том, что коммит создан
   console.log(`
  
 💡 Создали коммит с сообщением: ${message}
